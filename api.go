@@ -242,7 +242,7 @@ func SetCell(x, y int, ch rune, fg, bg Attribute) {
 	back_buffer.cells[y*back_buffer.width+x] = Cell{ch, fg, bg}
 }
 
-// Returns a slice into the termbox's back buffer. You can get its dimensions
+// CellBuffer returns a slice into the termbox's back buffer. You can get its dimensions
 // using 'Size' function. The slice remains valid as long as no 'Clear' or
 // 'Flush' function calls were made after call to this function.
 func CellBuffer() []Cell {
@@ -385,7 +385,7 @@ func PollEvent() Event {
 	}
 }
 
-// Returns the size of the internal back buffer (which is mostly the same as
+// Size returns the size of the internal back buffer (which is mostly the same as
 // terminal's window size in characters). But it doesn't always match the size
 // of the terminal window, after the terminal size has changed, the internal
 // back buffer will get in sync only after Clear or Flush function calls.
@@ -393,7 +393,7 @@ func Size() (width int, height int) {
 	return termw, termh
 }
 
-// Clears the internal back buffer.
+// Clear clears the internal back buffer.
 func Clear(fg, bg Attribute) error {
 	foreground, background = fg, bg
 	err := update_size_maybe()
